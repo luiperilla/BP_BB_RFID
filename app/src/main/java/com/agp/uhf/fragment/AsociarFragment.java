@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.agp.uhf.BuildConfig;
 import com.agp.uhf.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -102,7 +103,7 @@ public class AsociarFragment extends Fragment {
 
     private void consultarModelosPorOrden(String orden) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://172.16.60.189:8260/modelo?orden=" + orden;
+        String url = BuildConfig.API_BASE_URL + "/modelo?orden=" + orden;
 
         Request request = new Request.Builder().url(url).build();
 
@@ -164,7 +165,7 @@ public class AsociarFragment extends Fragment {
 
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(json.toString(), JSON);
-        String url = "http://172.16.60.189:8260/guardar_datos";
+        String url = BuildConfig.API_BASE_URL + "/guardar_datos";
 
         Request request = new Request.Builder().url(url).post(body).build();
 

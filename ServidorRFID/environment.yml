@@ -1,0 +1,44 @@
+# ============================================================
+# Entorno conda del Servidor RFID
+#
+# Encapsula el intérprete y todas las dependencias. La ventaja frente a un
+# venv es que conda trae su propio Python 3.12: no hace falta instalar Python
+# en la PC ni pedirle nada a IT. (Con venv haría falta un Python 3.12 del
+# sistema, y esta máquina solo tiene 3.14, para el que pyodbc no publica
+# wheels.)
+#
+# Crear:      conda env create -f environment.yml
+# Actualizar: conda env update -f environment.yml --prune
+# Borrar:     conda env remove -n servidor-rfid
+#
+# IMPORTANTE — CANALES: se usa exclusivamente conda-forge. Los canales por
+# defecto de Anaconda (repo.anaconda.com) exigen licencia comercial de pago
+# para organizaciones grandes, así que no deben usarse en una PC de
+# producción de la empresa. 'nodefaults' impide que se cuelen aunque la
+# configuración global de la máquina los tenga activados.
+#
+# Si en una máquina con Miniconda/Anaconda 'conda env create' falla con
+# CondaToSNonInteractiveError, es que su configuración global tiene los canales
+# de Anaconda y conda los evalúa antes de leer este archivo. NO ejecutes
+# 'conda tos accept' (eso acepta los términos comerciales en nombre de la
+# empresa): usa el comando equivalente con canal forzado, que los ignora por
+# completo.
+#
+#   conda create -n servidor-rfid --override-channels -c conda-forge python=3.12 \
+#       flask=3.0.3 python-dotenv=1.0.1 waitress=3.0.0 pyodbc=5.1.0 sqlalchemy=2.0.31 -y
+# ============================================================
+
+name: servidor-rfid
+
+channels:
+  - conda-forge
+  - nodefaults
+
+dependencies:
+  # pyodbc no publica paquetes para 3.13+; 3.12 es la versión estable a usar.
+  - python=3.12
+  - flask=3.0.3
+  - python-dotenv=1.0.1
+  - waitress=3.0.0
+  - pyodbc=5.1.0
+  - sqlalchemy=2.0.31

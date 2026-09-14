@@ -14,3 +14,14 @@
 .cxx
 local.properties
 *.env
+# --- Servidor RFID (Python) ---
+.venv/
+__pycache__/
+*.pyc
+ServidorRFID/logs/
+*.db
+
+# --- Firma de la app: nunca versionar keystores ni sus contraseñas ---
+*.jks
+*.keystore
+keystore.properties

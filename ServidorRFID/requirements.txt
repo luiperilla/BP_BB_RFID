@@ -1,3 +1,11 @@
+# Ruta con pip + venv. Requiere un Python 3.12 ya instalado en el sistema.
+# No usar 3.13+: pyodbc 5.1.0 no publica wheels para esas versiones e
+# intentaría compilar desde el código fuente.
+#
+# Alternativa recomendada: environment.yml, que trae su propio Python 3.12
+# y no depende de lo que haya instalado en la máquina.
 Flask==3.0.3
-pyodbc==5.1.0
 python-dotenv==1.0.1
+waitress==3.0.0
+pyodbc==5.1.0
+SQLAlchemy==2.0.31

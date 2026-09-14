@@ -14,6 +14,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Dirección del Servidor RFID (ServidorRFID/servidor_rfid.py).
+        // Antes estaba repetida en 6 sitios dentro de AsociarFragment y
+        // ConsultarFragment; ahora se cambia solo aquí y hay que recompilar.
+        // Si se mueve el servidor o cambia el puerto, esta es la única línea
+        // que se toca — pero sigue obligando a reinstalar el APK en los C5.
+        buildConfigField "String", "API_BASE_URL", "\"http://192.168.2.112:8390\""
     }
     signingConfigs {
         debug {
@@ -56,6 +63,9 @@ android {
 
     buildFeatures {
         viewBinding true
+        // Necesario desde AGP 8: sin esto no se genera la clase BuildConfig
+        // y API_BASE_URL no existiría en tiempo de compilación.
+        buildConfig true
     }
 
     compileOptions {

@@ -24,6 +24,7 @@ import com.rscja.deviceapi.entity.BarcodeEntity;
 import com.agp.uhf.tools.BarcodeManager;
 
 
+import com.agp.uhf.BuildConfig;
 import com.agp.uhf.R;
 
 import androidx.annotation.NonNull;
@@ -164,7 +165,7 @@ public class ConsultarFragment extends Fragment {
     // Eliminar registros por OP
     private void eliminarRegistrosPorOP(String op) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://172.16.60.189:8260/eliminar_datos?orden=" + op;
+        String url = BuildConfig.API_BASE_URL + "/eliminar_datos?orden=" + op;
         Request request = new Request.Builder().url(url).delete().build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -191,7 +192,7 @@ public class ConsultarFragment extends Fragment {
     // Consultar por OP
     private void consultarPorOP(String op) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://172.16.60.189:8260/modelos_y_epc?orden=" + op;
+        String url = BuildConfig.API_BASE_URL + "/modelos_y_epc?orden=" + op;
 
         Request request = new Request.Builder().url(url).build();
 
@@ -298,7 +299,7 @@ public class ConsultarFragment extends Fragment {
     // Consultar por EPC
     private void consultarPorEPC(String epc) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://172.16.60.189:8260/consulta_por_epc?epc=" + epc;  // URL de la API para EPC
+        String url = BuildConfig.API_BASE_URL + "/consulta_por_epc?epc=" + epc;
 
         Request request = new Request.Builder().url(url).build();
 
@@ -375,7 +376,7 @@ public class ConsultarFragment extends Fragment {
 
     private void eliminarRegistrosPorEPC(String epc) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://172.16.60.189:8260/eliminar_por_epc?epc=" + epc;
+        String url = BuildConfig.API_BASE_URL + "/eliminar_por_epc?epc=" + epc;
 
         Request request = new Request.Builder().url(url).delete().build();
 
